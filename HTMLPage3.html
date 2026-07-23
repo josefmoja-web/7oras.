@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horas - تسجيل الدخول وإنشاء حساب</title>
+    <!-- استدعاء خط Cairo الاحترافي من جوجل -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="stylesheet4.css" rel="stylesheet" />
+    <style>
+        /* --- تنسيقات CSS الاحترافية والمتناسقة مع صفحة الإعدادات --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #f8fafc;
+        }
+
+        .login-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 35px 30px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* أزرار التبديل العلوية */
+        .form-toggle {
+            display: flex;
+            background: #0f172a;
+            padding: 5px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 9px;
+            transition: all 0.3s ease;
+        }
+
+            .toggle-btn.active {
+                background: #3b82f6;
+                color: #ffffff;
+                box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            }
+
+        /* تأثيرات إخفاء وإظهار القوائم */
+        .form-section {
+            display: none;
+        }
+
+            .form-section.active {
+                display: block;
+                animation: slideUp 0.4s ease;
+            }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 22px;
+            text-align: center;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+            .input-group label {
+                display: block;
+                margin-bottom: 8px;
+                font-size: 14px;
+                color: #cbd5e1;
+                font-weight: 600;
+            }
+
+            .input-group input {
+                width: 100%;
+                padding: 12px 16px;
+                background: #0f172a;
+                border: 1px solid #334155;
+                border-radius: 10px;
+                color: #fff;
+                font-size: 15px;
+                outline: none;
+                transition: all 0.3s ease;
+                text-align: right;
+            }
+
+                .input-group input:focus {
+                    border-color: #3b82f6;
+                    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+                }
+
+        /* الأزرار الرئيسية */
+        .main-btn {
+            width: 100%;
+            padding: 13px;
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+
+            .main-btn:hover {
+                background: #2563eb;
+            }
+
+        /* خط الفاصل */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 25px 0;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+            .divider::before, .divider::after {
+                content: '';
+                flex: 1;
+                border-bottom: 1px solid #334155;
+            }
+
+            .divider:not(:empty)::before {
+                margin-left: .7em;
+            }
+
+            .divider:not(:empty)::after {
+                margin-right: .7em;
+            }
+
+        /* أزرار الدخول الإضافية */
+        .social-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .social-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        #googleBtn {
+            background: #ffffff;
+            color: #1e293b;
+            border: none;
+        }
+
+            #googleBtn:hover {
+                background: #f1f5f9;
+            }
+
+        #anonymousBtn {
+            background: rgba(51, 65, 85, 0.5);
+            color: #f8fafc;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+            #anonymousBtn:hover {
+                background: rgba(71, 85, 105, 0.8);
+            }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل العلوي -->
+    <header class="settings-bar">
+        <!-- حاوية القائمة المنسدلة -->
+        <div class="profile-dropdown">
+            <a href="index.html">
+                <button class="profile-btn" id="profileBtn">
+                    <img src="HOME.png" alt="صورة الحساب" class="avata">
+                </button>
+            </a>
+        </div>
+    </header>
+
+    <div class="login-card">
+        <!-- أزرار التبديل السريع -->
+        <div class="form-toggle">
+            <button class="toggle-btn active" onclick="switchForm('signIn')">تسجيل الدخول</button>
+            <button class="toggle-btn" onclick="switchForm('signUp')">إنشاء حساب</button>
+        </div>
+
+        <!-- ================= [1] واجهة تسجيل الدخول ================= -->
+        <div id="signInForm" class="form-section active">
+            <h2>مرحباً بك في حورس</h2>
+            <form>
+                <div class="input-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="signInEmail" placeholder="name@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="signInPassword" placeholder="••••••••" required>
+                </div>
+                <button type="button" id="signInBtn" class="main-btn">دخول الحساب</button>
+            </form>
+        </div>
+
+        <!-- ================= [2] واجهة إنشاء الحساب ================= -->
+        <div id="signUpForm" class="form-section">
+            <h2>انضم إلينا الآن</h2>
+            <form>
+                <div class="input-group">
+                    <label>البريد الإلكتروني الجديد</label>
+                    <input type="email" id="signUpEmail" placeholder="name@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="signUpPassword" placeholder="••••••••" required>
+                </div>
+                <button type="button" id="signUpBtn" class="main-btn">تأكيد وإنشاء</button>
+            </form>
+        </div>
+
+        <!-- خط الفاصل -->
+        <div class="divider">أو يمكنك الدخول عبر</div>
+
+        <!-- طرق تسجيل الدخول الإضافية المفعلة في الفايربيس -->
+        <div class="social-group">
+            <!-- زر جوجل -->
+            <button id="googleBtn" class="social-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" width="18">
+                حساب Google
+            </button>
+
+            <!-- زر الزائر السريع -->
+            <button id="anonymousBtn" class="social-btn">
+                👤 تسجيل الدخول كـ ضيف سريع
+            </button>
+        </div>
+    </div>
+
+    <!-- كود الجافا سكريبت التفاعلي لقلب الصفحات بنعومة -->
+    <script>
+        function switchForm(formType) {
+            const signInForm = document.getElementById('signInForm');
+            const signUpForm = document.getElementById('signUpForm');
+            const buttons = document.querySelectorAll('.toggle-btn');
+
+            if (formType === 'signIn') {
+                signInForm.classList.add('active');
+                signUpForm.classList.remove('active');
+                buttons[0].classList.add('active');
+                buttons[1].classList.remove('active');
+            } else {
+                signUpForm.classList.add('active');
+                signInForm.classList.remove('active');
+                buttons[1].classList.add('active');
+                buttons[0].classList.remove('active');
+            }
+        }
+    </script>
+
+    <!-- ربط ملف الـ JavaScript الحديث اللي فيه كود الفايربيس والمفاتيح الحقيقية بتاعتك -->
+    <script src="ScriptT.js" type="module"></script>
+    <script src="Script1.js"></script>
+
+</body>
+</html>

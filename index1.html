@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="welcometitle">Welcome</title>
+    <!-- ربط ملف التنسيق الخارجي -->
+    <link rel="stylesheet" href="stylesheet4.css">
+    <script>
+        // 1. التحقق مما إذا كان الزائر قد زار الموقع سابقاً
+        if (localStorage.getItem('hasVisited')) {
+            // 2. إذا زار الموقع من قبل، حوّله فوراً للصفحة الرئيسية (مثلاً home.html)
+            window.location.href = 'home.html'; // 👈 استبدل home.html باسم صفحتك الرئيسية
+        } else {
+            // 3. إذا كانت هذه أول زيارة، احفظ العلامة حتى لا تظهر له مرة أخرى
+            localStorage.setItem('hasVisited', 'true');
+        }
+    </script>
+
+</head>
+<body>
+
+    <!-- شريط التنقل العلوي -->
+    <header class="settings-bar">
+        <div class="logo">
+            <!-- استبدل "logo.png" بمسار صورتك الحقيقي -->
+            <img src="the icon.png" alt="شعار حورس" class="logo-img">
+        </div>
+
+        <!-- حاوية القائمة المنسدلة -->
+        <div class="profile-dropdown">
+            <button class="profile-btn" id="profileBtn">
+                <img src="login.png" alt="صورة الحساب" class="avatar">
+            </button>
+
+            <!-- محتويات القائمة المنسدلة -->
+            <ul class="dropdown-menu" id="dropdownMenu">
+                <!-- معلومات المستخدم السريعة -->
+                <li class="user-info">
+                    <span class="user-name">???</span>
+                    <span class="user-email"> Didn't sign</span>
+                </li>
+                <hr>
+                <!-- الروابط -->
+                <li >
+                    <a href="HTMLPage3.html">
+                        <svg class="menu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                        Sign in
+                    </a>
+                </li>
+                <li>
+                    <a href="HTMLPage4.html">
+                        <svg class="menu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" /></svg>
+                        Setting
+                    </a>
+                </li>
+                <li>
+                    <a href="HTMLPage7.html">
+                        <svg class="menu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
+                        My Downloads
+                    </a>
+                </li>
+                <hr>
+                <li>
+                    <a href="#logout" class="logout-btn">
+                        <svg class="menu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" x2="9" y1="12" y2="12" /></svg>
+                        Log out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <center>
+        <section>
+            <h1 data-i18n="hwelcome"> Welcome To Our WebSite </h1>
+        </section>
+        <section>
+        </section>
+        <footer>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <a href="home.html"><button data-i18n="butunc" class="btn"> Contnue ➡️</button></a>
+
+        </footer>
+    </center>
+    </div>
+    <script src="Script1.js"></script>
+</body>
+</html>

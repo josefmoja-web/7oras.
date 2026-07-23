@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="gtitle">7ORAS</title>
+    <link rel="stylesheet" href="StyleSheet4.css">
+    <!-- محتوى الصفحة التجريبي -->
+    <!-- استدعاء خط Cairo الاحترافي من جوجل -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        /* أزرار التبديل العلوية */
+        .toggle-btn {
+            flex: 1;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 9px;
+            transition: all 0.3s ease;
+        }
+
+            .toggle-btn.active {
+                background: #3b82f6;
+                color: #ffffff;
+                box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            }
+
+        /* تأثيرات إخفاء وإظهار القوائم */
+        .form-section {
+            display: none;
+        }
+
+            .form-section.active {
+                display: block;
+                animation: slideUp 0.4s ease;
+            }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 22px;
+            text-align: center;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+            .input-group label {
+                display: block;
+                margin-bottom: 8px;
+                font-size: 14px;
+                color: #cbd5e1;
+                font-weight: 600;
+            }
+
+            .input-group input {
+                width: 100%;
+                padding: 12px 16px;
+                background: #0f172a;
+                border: 1px solid #334155;
+                border-radius: 10px;
+                color: #fff;
+                font-size: 15px;
+                outline: none;
+                transition: all 0.3s ease;
+                text-align: right;
+            }
+
+        input#filterCheckbox {
+            width: 10%;
+            color: #0f172a;
+        }
+
+        .input-group input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+
+        /* الأزرار الرئيسية */
+        .main-btn {
+            width: 100%;
+            padding: 13px;
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+
+            .main-btn:hover {
+                background: #2563eb;
+            }
+
+        /* خط الفاصل */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 25px 0;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+            .divider::before, .divider::after {
+                content: '';
+                flex: 1;
+                border-bottom: 1px solid #334155;
+            }
+
+            .divider:not(:empty)::before {
+                margin-left: .7em;
+            }
+
+            .divider:not(:empty)::after {
+                margin-right: .7em;
+            }
+
+        /* أزرار الدخول الإضافية */
+        .social-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .social-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        #googleBtn {
+            background: #ffffff;
+            color: #1e293b;
+            border: none;
+        }
+
+            #googleBtn:hover {
+                background: #f1f5f9;
+            }
+
+        #anonymousBtn {
+            background: rgba(51, 65, 85, 0.5);
+            color: #f8fafc;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+            #anonymousBtn:hover {
+                background: rgba(71, 85, 105, 0.8);
+            }
+    </style>
+
+</head>
+<body>
+
+    <!-- شريط التنقل العلوي -->
+    <header class="settings-bar">
+        <div class="logo">
+            <!-- استبدل "logo.png" بمسار صورتك الحقيقي -->
+            <img src="GAMES WHITE.png" alt="شعار حراس" class="logo-img">
+        </div>
+
+        <!-- حاوية القائمة المنسدلة -->
+        <div class="profile-dropdown">
+            <button class="profile-btn" id="profileBtn">
+                <img src="login.png" alt="صورة الحساب" class="avatar">
+            </button>
+
+            <!-- محتويات القائمة المنسدلة -->
+            <ul class="dropdown-menu" id="dropdownMenu">
+                <!-- معلومات المستخدم السريعة -->
+                <li class="user-info">
+                    <span class="user-name">???</span>
+                    <span class="user-email"> Didn't sign</span>
+                </li>
+                <hr>
+                <!-- الروابط -->
+                <li>
+                    <a href="HTMLPage3.html">
+                        <svg class="menu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                        Sign in
+                    </a>
+                </li>
+                <li>
+                    <a href="HTMLPage4.html">
+                        <svg class="menu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" /></svg>
+                        Setting
+                    </a>
+                </li>
+                <li>
+                    <a href="HTMLPage7.html">
+                        <svg class="menu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
+                        My Downloads
+                    </a>
+                </li>
+                <hr />
+                <li>
+                    <a href="#logout" class="logout-btn">
+                        <svg class="menu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" x2="9" y1="12" y2="12" /></svg>
+                        Log out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <center>
+        <div class="login-card">
+            <!-- أزرار التبديل السريع -->
+            <div class="form-toggle">
+                <button class="toggle-btn active" onclick="switchForm('signIn')" data-i18n="ga">الألعاب</button>
+                <button class="toggle-btn" onclick="switchForm('signUp')" data-i18n="ap">التطبيقات</button>
+            </div>
+
+            <!-- ================= [1] واجهة تسجيل الدخول ================= -->
+            <div id="signInForm" class="form-section active">
+                <h2 data-i18n="welcome7">مرحباً بك في حورس</h2>
+                <form>
+                    <div class="input-group">
+                        <div class="select-group">
+                            <label data-i18n="kog">نوع اللعبة</label>
+                            <select id="genreSelect">
+                                <option data-i18n="ag" value="all">   كل الألعاب    </option>
+                                <option data-i18n="so" value="souls">   سولز    </option>
+                                <option data-i18n="st" value="story">   قصة    </option>
+                                <option data-i18n="sh" value="shouter"> شوتر    </option>
+                                <option data-i18n="im" value="imposter">   امبوستر    </option>
+                                <option data-i18n="mp" value="multiplayer">   لعب جماعي    </option>
+                                <option data-i18n="sc" value="scary">   رعب    </option>
+                            </select>
+                            <input type="checkbox" id="filterCheckbox" placeholder="تطبيق الخيارات" />تطبيق الخيارات
+                            <!-- قائمة الألعاب -->
+                            <div id="gamesList">
+                                <div class="game-item" data-genre="souls">لعبة العنف والإثارة (أكشن)</div>
+                                <div class="game-item" data-genre="rpg">لعبة المغامرات (آر بي جي)</div>
+                                <div class="game-item" data-genre="sports">لعبة كرة القدم (رياضة)</div>
+                                <div class="game-item" data-genre="action">لعبة قتال أخرى (أكشن)</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label data-i18n="ga">الألعاب</label>
+                        <p>
+
+
+
+
+
+
+
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ================= [2] واجهة إنشاء الحساب ================= -->
+            <div id="signUpForm" class="form-section">
+                <h2 data-i18n="welcome70">نسعى دائماً لننال رضاكم الكامل</h2>
+                <form>
+                    <div class="input-group">
+                        <label data-i18n="ap">التطبيقات</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- كود الجافا سكريبت التفاعلي لقلب الصفحات بنعومة -->
+        <script>
+            function switchForm(formType) {
+                const signInForm = document.getElementById('signInForm');
+                const signUpForm = document.getElementById('signUpForm');
+                const buttons = document.querySelectorAll('.toggle-btn');
+
+                if (formType === 'signIn') {
+                    signInForm.classList.add('active');
+                    signUpForm.classList.remove('active');
+                    buttons[0].classList.add('active');
+                    buttons[1].classList.remove('active');
+                } else {
+                    signUpForm.classList.add('active');
+                    signInForm.classList.remove('active');
+                    buttons[1].classList.add('active');
+                    buttons[0].classList.remove('active');
+                }
+            }
+        </script>
+
+        <!-- ربط ملف الـ JavaScript الحديث اللي فيه كود الفايربيس والمفاتيح الحقيقية بتاعتك -->
+        <script src="Script1.js"></script>
+        <script src="Script4.js"></script>
+    </center>
+
+</body>
+</html>

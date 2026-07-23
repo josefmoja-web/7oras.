@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="settings_title">الإعدادات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheet3.css">
+</head>
+<body>
+
+    <div class="settings-container">
+        <!-- القائمة الجانبية للإعدادات -->
+        <aside class="settings-sidebar">
+            <div class="user-profile-summary">
+                <a href="index.html" class="nav-item1" data-i18n="arrow"> ➡️ </a>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#profile" class="nav-item active" data-i18n="nav_security">الأمان والخصوصية</a>
+                <a href="#notifications" class="nav-item" data-i18n="nav_notifications">الإشعارات</a>
+                <a href="#preferences" class="nav-item" data-i18n="nav_preferences">التفضيلات والعرض</a>
+            </nav>
+        </aside>
+
+        <!-- المحتوى الرئيسي للإعدادات -->
+        <main class="settings-main">
+
+
+            <!-- قسم التفضيلات (اللغة والدارك مود) -->
+            <section id="preferences" class="settings-section">
+                    <h2 data-i18n="section_preferences">مظهر الموقع واللغة</h2>
+                    <div class="settings-card">
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <h4 data-i18n="row_theme_title">مظهر الواجهة</h4>
+                                <p data-i18n="row_theme_desc">التبديل بين الوضع الداكن والوضع الفاتح المريح للعين.</p>
+                            </div>
+                            <button id="theme-toggle" class="btn btn-secondary">الوضع الداكن</button>
+                        </div>
+
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <h4 data-i18n="row_lang_title">لغة الموقع</h4>
+                                <p data-i18n="row_lang_desc">اختر اللغة المفضلة لتصفح المنصة.</p>
+                            </div>
+                            <button id="lang-toggle" class="btn btn-secondary">English</button>
+                        </div>
+                    </div>
+            </section>
+
+            <!-- قسم الأمان -->
+            <section id="profile" class="settings-section">
+                <h2 data-i18n="section_security">الأمان وحماية الحساب</h2>
+                <div class="settings-card">
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label data-i18n="label_old_pass">كلمة المرور الحالية</label>
+                            <input type="password" placeholder="••••••••">
+                        </div>
+                        <div class="input-group">
+                            <label data-i18n="label_new_pass">كلمة المرور الجديدة</label>
+                            <input type="password" placeholder="••••••••">
+                        </div>
+                    </div>
+
+                    <div class="setting-row border-top">
+                        <div class="setting-info">
+                            <h4 data-i18n="row_2fa_title">التحقق بخطوتين (2FA)</h4>
+                            <p data-i18n="row_2fa_desc">إضافة طبقة أمان إضافية لحسابك عبر رمز يصل لهاتفك.</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="switch-2fa">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <button id="update-security-btn" class="btn btn-primary" data-i18n="btn_update_pass">تحديث الأمان</button>
+                    <a href="HTMLPage8.html"><button class="btn btn-primary">اعدادات اكثر</button></a>
+
+                </div>
+            </section>
+
+            <!-- قسم الإشعارات -->
+            <section id="notifications" class="settings-section">
+                <h2 data-i18n="section_notifications">إعدادات التنبيهات</h2>
+                <div class="settings-card">
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <h4 data-i18n="row_notif_email">إشعارات البريد الإلكتروني</h4>
+                            <p data-i18n="row_notif_email_desc">استقبال تقارير أسبوعية وتحديثات المنصة عبر البريد.</p>
+                        </div>
+                        <!-- الخيار الأول: أضفنا id="switch-email" -->
+                        <label class="switch">
+                            <input type="checkbox" id="switch-email">
+                            <span class="slider"></span>
+                        </label>
+                        <fluent-switch tabindex="0" checked="false" controlid="409" aria-label="Only apply page colors when high contrast themes are on" aria-description=""></fluent-switch>
+                        </label>
+                    </div>
+
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <h4 data-i18n="row_notif_offers">العروض والخصومات</h4>
+                            <p data-i18n="row_notif_offers_desc">تنبيهي عند وجود خصومات أو ميزات جديدة متاحة.</p>
+                            <!-- الخيار الثاني: أضفنا id="switch-offers" -->
+                            <label class="switch">
+                                <input type="checkbox" id="switch-offers">
+                                <span class="slider"></span>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- منطقة الخطر (حذف الحساب) -->
+            <section id="danger" class="settings-section">
+                <h2 class="text-danger" data-i18n="section_danger">حذف الحساب</h2>
+                <div class="settings-card border-danger">
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <h4 data-i18n="row_delete_title">حذف الحساب نهائياً</h4>
+                            <p data-i18n="row_delete_desc">بمجرد حذف الحساب، سيتم إزالة جميع بياناتك ولا يمكن استعادتها.</p>
+                        </div>
+                        <button id="delete-account-btn" class="btn btn-danger" data-i18n="btn_delete">حذف الحساب</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="script1.js"></script>
+</body>
+</html>
